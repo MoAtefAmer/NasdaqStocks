@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   View,
   Text,
@@ -8,6 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {useInfiniteStockSearch} from '../hooks/useInfiniteStockSearch';
+import ListFooter from '../components/ListFooter';
 
 const ExploreScreen = () => {
   const {
@@ -45,15 +45,17 @@ const ExploreScreen = () => {
           )}
           onEndReached={async () => {
             if (hasNextPage && !isFetchingNextPage) {
-              console.log('fetch next page');
               await fetchNextPage();
             }
           }}
           onEndReachedThreshold={0.5}
           ListFooterComponent={
-            isFetchingNextPage || isLoading ? (
-              <ActivityIndicator size="large" />
-            ) : null
+            <ListFooter
+              isFetchingNextPage={isFetchingNextPage}
+              isLoading={isLoading}
+              stocks={stocks}
+              hasNextPage={hasNextPage}
+            />
           }
         />
       )}
