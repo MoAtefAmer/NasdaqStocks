@@ -59,5 +59,13 @@ npm run start
 
 ## Step 4: Setting up ENV vars
 
+Checkout the .env.example file, you should go to polygon.io, obtain an API key and create your own .env file in the root folder 
+of the project and add it to the file like so:
+
+.env:
+
+```
+POLYGON_API_KEY="API Key here"
+```
 
 
