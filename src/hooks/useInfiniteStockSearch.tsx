@@ -1,8 +1,29 @@
 import {useState, useMemo} from 'react';
 import useDebounce from './useDebounce';
 import {useInfiniteStocks} from './useInfiniteStocks';
+import {
+  FetchNextPageOptions,
+  InfiniteQueryObserverResult,
+} from '@tanstack/react-query';
+import {Stock} from '../types/stocks';
 
-export function useInfiniteStockSearch(debounceDelay = 1500) {
+type UseInfiniteStockSearchReturn = {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  stocks: Stock[];
+  isSearching: boolean;
+  fetchNextPage: (
+    options?: FetchNextPageOptions,
+  ) => Promise<InfiniteQueryObserverResult>;
+
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
+  isLoading: boolean;
+};
+
+export function useInfiniteStockSearch(
+  debounceDelay = 1500,
+): UseInfiniteStockSearchReturn {
   const [query, setQuery] = useState('');
   const {debouncedValue: debouncedSearchQuery, isLoading: isSearching} =
     useDebounce(query, debounceDelay);
@@ -21,7 +42,7 @@ export function useInfiniteStockSearch(debounceDelay = 1500) {
     stocks,
     isSearching,
     fetchNextPage,
-    hasNextPage,
+    hasNextPage: hasNextPage ?? false,
     isFetchingNextPage,
     isLoading,
   };

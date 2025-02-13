@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {apiClient, POLYGON_API_KEY} from '../client/apiClient';
 import 'react-native-url-polyfill/auto';
+import {Stock, FetchStocksResponse} from '../types/stocks';
 
 export const fetchStocks = async ({
   query,
@@ -8,7 +9,7 @@ export const fetchStocks = async ({
 }: {
   query: string;
   pageCursor?: string;
-}) => {
+}): Promise<FetchStocksResponse> => {
   const params = {
     search: query,
     active: 'true',
@@ -20,14 +21,16 @@ export const fetchStocks = async ({
   };
 
   try {
-    const {data} = await apiClient.get('tickers', {
-      params,
-    });
+    const {data} = await apiClient.get<{results?: Stock[]; next_url?: string}>(
+      'tickers',
+      {params},
+    );
 
     const nextCursor =
       new URL(data.next_url || '').searchParams.get('cursor') ?? undefined;
 
-    const stocks = data?.results || [];
+    const stocks: Stock[] = data?.results || [];
+    console.log('fetching...', stocks);
 
     return {
       stocks,
