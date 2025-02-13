@@ -1,5 +1,5 @@
 import {useInfiniteQuery} from '@tanstack/react-query';
-import {fetchStocks} from '../api/apiClient';
+import {fetchStocks} from '../api/stocksApi';
 
 export const useStocks = (query: string) => {
   return useInfiniteQuery({
