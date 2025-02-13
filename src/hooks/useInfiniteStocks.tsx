@@ -1,7 +1,7 @@
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {fetchStocks} from '../api/stocksApi';
 
-export const useStocks = (query: string) => {
+export const useInfiniteStocks = (query: string) => {
   return useInfiniteQuery({
     queryKey: ['fetchStocks', query],
     queryFn: async ({pageParam}) =>

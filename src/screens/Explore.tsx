@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -7,18 +7,19 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
-import {useStocks} from '../hooks/useStocks';
+import {useInfiniteStockSearch} from '../hooks/useInfiniteStockSearch';
 
 const ExploreScreen = () => {
-  const [query, setQuery] = useState('');
-  const {data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading} =
-    useStocks(query);
-
-  const stocks = useMemo(
-    () => data?.pages.flatMap(page => page.stocks) || [],
-    [data],
-  );
-
+  const {
+    query,
+    setQuery,
+    stocks,
+    isSearching,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteStockSearch(1500);
   return (
     <View style={styles.container}>
       <TextInput
@@ -29,30 +30,33 @@ const ExploreScreen = () => {
         }}
         style={styles.searchInput}
       />
-
-      <FlatList
-        data={stocks}
-        keyExtractor={item => item.ticker + '' + Math.random()}
-        renderItem={({item}) => (
-          <View style={{padding: 20, height: 200}}>
-            <Text style={{padding: 10}}>
-              ticker : {item.ticker}, {item.name}
-            </Text>
-          </View>
-        )}
-        onEndReached={async () => {
-          if (hasNextPage && !isFetchingNextPage) {
-            console.log('fetch next page');
-            await fetchNextPage();
+      {isSearching ? (
+        <ActivityIndicator size="large" style={{marginVertical: 10}} />
+      ) : (
+        <FlatList
+          data={stocks}
+          keyExtractor={item => item.ticker + '' + Math.random()}
+          renderItem={({item}) => (
+            <View style={{padding: 20, height: 200}}>
+              <Text style={{padding: 10}}>
+                ticker : {item.ticker}, {item.name}
+              </Text>
+            </View>
+          )}
+          onEndReached={async () => {
+            if (hasNextPage && !isFetchingNextPage) {
+              console.log('fetch next page');
+              await fetchNextPage();
+            }
+          }}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={
+            isFetchingNextPage || isLoading ? (
+              <ActivityIndicator size="large" />
+            ) : null
           }
-        }}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={
-          isFetchingNextPage || isLoading ? (
-            <ActivityIndicator size="large" />
-          ) : null
-        }
-      />
+        />
+      )}
     </View>
   );
 };
