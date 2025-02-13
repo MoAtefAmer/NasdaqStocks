@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import useBootSplash from './hooks/useBootSplash';
+import useBootSplash from './src/hooks/useBootSplash';
 
 function App(): React.JSX.Element {
   useBootSplash(async () => {
