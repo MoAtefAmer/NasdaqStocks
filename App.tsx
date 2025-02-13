@@ -1,7 +1,12 @@
-import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import useBootSplash from './hooks/useBootSplash';
 
 function App(): React.JSX.Element {
+  useBootSplash(async () => {
+    console.log('Initializing app...');
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Page content</Text>
