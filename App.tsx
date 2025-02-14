@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from './src/client/ReactQueryClient';
+import { queryClient } from './src/client/queryClient';
 import ExploreScreen from './src/screens/Explore';
 import useBootSplash from './src/hooks/useBootSplash';
 
