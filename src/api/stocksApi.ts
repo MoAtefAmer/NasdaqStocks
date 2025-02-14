@@ -30,7 +30,6 @@ export const fetchStocks = async ({
       new URL(data.next_url || '').searchParams.get('cursor') ?? undefined;
 
     const stocks: Stock[] = data?.results || [];
-    console.log('fetching...', stocks);
 
     return {
       stocks,
