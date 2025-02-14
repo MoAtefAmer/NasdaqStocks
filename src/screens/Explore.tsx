@@ -8,7 +8,7 @@ import { theme } from '../constants/theme';
 import { useCallback } from 'react';
 import { Stock } from '../types/stocks';
 
-const ExploreScreen = () => {
+const Explore = () => {
   const {
     searchQuery,
     setSearchQuery,
@@ -79,7 +79,7 @@ const ExploreScreen = () => {
   );
 };
 
-export default ExploreScreen;
+export default Explore;
 
 const styles = StyleSheet.create({
   screenContainer: { backgroundColor: theme.colors.onPrimary, flex: 1 },
