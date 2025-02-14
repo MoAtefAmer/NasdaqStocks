@@ -1,13 +1,8 @@
-import {
-  View,
-  Text,
-  FlatList,
-  ActivityIndicator,
-  StyleSheet,
-} from 'react-native';
+import {View, FlatList, ActivityIndicator, StyleSheet} from 'react-native';
 import {useInfiniteStockSearch} from '../hooks/useInfiniteStockSearch';
 import ListFooter from '../components/ListFooter';
 import Header from '../components/Header';
+import StockCard from '../components/StockCard';
 
 const ExploreScreen = () => {
   const {
@@ -35,13 +30,15 @@ const ExploreScreen = () => {
         ) : (
           <FlatList
             data={stocks}
+            numColumns={2}
             keyExtractor={item => item.ticker + '' + Math.random()}
             renderItem={({item}) => (
-              <View style={{padding: 20, height: 200}}>
-                <Text style={{padding: 10}}>
-                  ticker : {item.ticker}, {item.name}
-                </Text>
-              </View>
+              <StockCard
+                ticker={item?.ticker}
+                name={item?.name}
+                active={item?.active}
+                primaryExchange={item?.primary_exchange}
+              />
             )}
             onEndReached={async () => {
               if (hasNextPage && !isFetchingNextPage) {
@@ -69,7 +66,6 @@ export default ExploreScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     marginTop: 200,
   },
 

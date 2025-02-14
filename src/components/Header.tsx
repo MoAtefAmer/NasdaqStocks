@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
 
 const styles = StyleSheet.create({
   searchbarContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     paddingBottom: 10,
   },
   headerContainer: {

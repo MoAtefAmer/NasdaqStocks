@@ -9,6 +9,7 @@ export type Stock = {
   share_class_figi: string;
   currency_name: string;
   composite_figi: string;
+  primary_exchange: string;
 };
 
 export type FetchStocksResponse = {
