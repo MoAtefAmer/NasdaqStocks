@@ -1,14 +1,14 @@
-import {useInfiniteQuery} from '@tanstack/react-query';
-import {FetchStocksResponse} from '../types/stocks';
-import {fetchStocks} from '../api/stocksApi';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { FetchStocksResponse } from '../types/stocks';
+import { fetchStocks } from '../api/stocksApi';
 
 export const useInfiniteStocks = (query: string) => {
   return useInfiniteQuery<FetchStocksResponse, Error>({
     queryKey: ['fetchStocks', query],
-    queryFn: ({pageParam = undefined}) =>
-      fetchStocks({query, pageCursor: pageParam as string | undefined}),
+    queryFn: ({ pageParam = undefined }) =>
+      fetchStocks({ query, pageCursor: pageParam as string | undefined }),
     initialPageParam: undefined,
-    getNextPageParam: lastPage => lastPage.nextCursor ?? undefined,
+    getNextPageParam: lastPage => lastPage?.nextCursor ?? undefined,
     staleTime: 60000,
     retry: (failureCount, error) =>
       error?.message === 'rate_limit' && failureCount < 3, // Retry only for rate limit errors

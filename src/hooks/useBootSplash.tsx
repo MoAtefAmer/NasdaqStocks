@@ -1,17 +1,15 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import BootSplash from 'react-native-bootsplash';
 
-const useBootSplash = (init: () => Promise<void>) => {
+const useBootSplash = () => {
   useEffect(() => {
-    const initialize = async () => {
-      await init();
+    const hideSplashScreen = async () => {
+      await BootSplash.hide({ fade: true });
+      console.log('BootSplash has been hidden successfully');
     };
 
-    initialize().finally(async () => {
-      await BootSplash.hide({fade: true});
-      console.log('BootSplash has been hidden successfully');
-    });
-  }, [init]);
+    hideSplashScreen();
+  }, []);
 };
 
 export default useBootSplash;
