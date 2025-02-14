@@ -1,11 +1,11 @@
-import {useState, useMemo} from 'react';
+import { useState, useMemo } from 'react';
 import useDebounce from './useDebounce';
-import {useInfiniteStocks} from './useInfiniteStocks';
+import { useInfiniteStocks } from './useInfiniteStocks';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
 } from '@tanstack/react-query';
-import {Stock} from '../types/stocks';
+import { Stock } from '../types/stocks';
 
 type UseInfiniteStockSearchReturn = {
   query: string;
@@ -20,15 +20,13 @@ type UseInfiniteStockSearchReturn = {
   isFetchingNextPage: boolean;
   isLoading: boolean;
 };
-
-export function useInfiniteStockSearch(
-  debounceDelay = 1500,
-): UseInfiniteStockSearchReturn {
+const debounceDelay = 1500;
+export function useInfiniteStockSearch(): UseInfiniteStockSearchReturn {
   const [query, setQuery] = useState('');
-  const {debouncedValue: debouncedSearchQuery, isLoading: isSearching} =
+  const { debouncedValue: debouncedSearchQuery, isLoading: isSearching } =
     useDebounce(query, debounceDelay);
 
-  const {data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading} =
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading } =
     useInfiniteStocks(debouncedSearchQuery);
 
   const stocks = useMemo(
