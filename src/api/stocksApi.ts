@@ -7,7 +7,7 @@ export const fetchStocks = async ({
   query,
   pageCursor,
 }: {
-  query: string;
+  query?: string;
   pageCursor?: string;
 }): Promise<FetchStocksResponse> => {
   const params = {

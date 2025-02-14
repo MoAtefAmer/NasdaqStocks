@@ -1,8 +1,10 @@
-import {View, FlatList, ActivityIndicator, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import {useInfiniteStockSearch} from '../hooks/useInfiniteStockSearch';
 import ListFooter from '../components/ListFooter';
 import Header from '../components/Header';
 import StockCard from '../components/StockCard';
+import {ActivityIndicator} from 'react-native-paper';
+import {theme} from '../constants/theme';
 
 const ExploreScreen = () => {
   const {
@@ -26,7 +28,11 @@ const ExploreScreen = () => {
 
       <View style={styles.container}>
         {isSearching ? (
-          <ActivityIndicator size="large" style={{marginVertical: 10}} />
+          <ActivityIndicator
+            size={'large'}
+            animating={true}
+            color={theme.colors.logoColor}
+          />
         ) : (
           <FlatList
             data={stocks}

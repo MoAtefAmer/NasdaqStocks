@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   subtitleStyle: {
-    color: '#218ecd',
+    color: theme.colors.logoColor,
     fontSize: 12,
     fontWeight: '800',
   },

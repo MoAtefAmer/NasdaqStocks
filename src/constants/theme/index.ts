@@ -3,6 +3,7 @@ import {DefaultTheme} from 'react-native-paper';
 export const theme = {
   ...DefaultTheme,
   colors: {
+    logoColor: '#0088ce',
     primary: 'rgb(120, 69, 172)',
     onPrimary: 'rgb(255, 255, 255)',
     primaryContainer: 'rgb(240, 219, 255)',
