@@ -5,7 +5,7 @@ import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
 } from '@tanstack/react-query';
-import { Stock } from '../types/stocks';
+import { Stock } from '../types';
 
 type UseInfiniteStockSearchReturn = {
   searchQuery: string;

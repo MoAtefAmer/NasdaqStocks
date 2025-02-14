@@ -6,7 +6,7 @@ import StockCard from '../components/StockCard';
 import { ActivityIndicator } from 'react-native-paper';
 import { theme } from '../constants/theme';
 import { useCallback } from 'react';
-import { Stock } from '../types/stocks';
+import { Stock } from '../types';
 
 const Explore = () => {
   const {

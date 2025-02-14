@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { Stock } from '../types/stocks';
+import { Stock } from '../types';
 import { theme } from '../constants/theme';
 import { ActivityIndicator } from 'react-native-paper';
 interface ListFooterProps {
