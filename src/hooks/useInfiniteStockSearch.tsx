@@ -20,15 +20,10 @@ type UseInfiniteStockSearchReturn = {
   isLoading: boolean;
 };
 
-const debounceDelay = 500;
-
 export function useInfiniteStockSearch(): UseInfiniteStockSearchReturn {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const { debouncedValue: debouncedSearchQuery } = useDebounce(
-    searchQuery,
-    debounceDelay,
-  );
+  const { debouncedValue: debouncedSearchQuery } = useDebounce(searchQuery);
 
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading } =
     useInfiniteStocks(debouncedSearchQuery);
