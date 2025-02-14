@@ -42,7 +42,6 @@ const ExploreScreen = () => {
               <StockCard
                 ticker={item?.ticker}
                 name={item?.name}
-                active={item?.active}
                 primaryExchange={item?.primary_exchange}
               />
             )}
