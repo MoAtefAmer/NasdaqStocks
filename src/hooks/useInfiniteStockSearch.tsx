@@ -11,7 +11,6 @@ type UseInfiniteStockSearchReturn = {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   stocks: Stock[];
-  isSearching: boolean;
   fetchNextPage: (
     options?: FetchNextPageOptions,
   ) => Promise<InfiniteQueryObserverResult>;
@@ -21,13 +20,15 @@ type UseInfiniteStockSearchReturn = {
   isLoading: boolean;
 };
 
-const debounceDelay = 1500;
+const debounceDelay = 500;
 
 export function useInfiniteStockSearch(): UseInfiniteStockSearchReturn {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const { debouncedValue: debouncedSearchQuery, isLoading: isSearching } =
-    useDebounce(searchQuery, debounceDelay);
+  const { debouncedValue: debouncedSearchQuery } = useDebounce(
+    searchQuery,
+    debounceDelay,
+  );
 
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading } =
     useInfiniteStocks(debouncedSearchQuery);
@@ -41,7 +42,6 @@ export function useInfiniteStockSearch(): UseInfiniteStockSearchReturn {
     searchQuery,
     setSearchQuery,
     stocks,
-    isSearching,
     fetchNextPage,
     hasNextPage: hasNextPage ?? false,
     isFetchingNextPage,

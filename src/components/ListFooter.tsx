@@ -1,27 +1,27 @@
-import {StyleSheet, Text} from 'react-native';
-import {FetchStocksResponse} from '../types/stocks';
-import {theme} from '../constants/theme';
-import {ActivityIndicator} from 'react-native-paper';
+import { StyleSheet, Text, View } from 'react-native';
+import { FetchStocksResponse } from '../types/stocks';
+import { theme } from '../constants/theme';
+import { ActivityIndicator } from 'react-native-paper';
 interface ListFooterProps {
   isFetchingNextPage: boolean;
-  isLoading: boolean;
   hasNextPage?: boolean;
   stocks: FetchStocksResponse['stocks'];
 }
 
 const ListFooter = ({
   isFetchingNextPage,
-  isLoading,
   hasNextPage,
   stocks,
 }: ListFooterProps) => {
-  if (isFetchingNextPage || isLoading) {
+  if (isFetchingNextPage) {
     return (
-      <ActivityIndicator
-        size={'large'}
-        animating={true}
-        color={theme.colors.logoColor}
-      />
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator
+          size={'large'}
+          animating={true}
+          color={theme.colors.logoColor}
+        />
+      </View>
     );
   }
   if (!hasNextPage && stocks?.length === 0) {
@@ -33,6 +33,9 @@ const ListFooter = ({
 export default ListFooter;
 
 const styles = StyleSheet.create({
+  loaderContainer: {
+    marginBottom: 25,
+  },
   endText: {
     textAlign: 'center',
     padding: 10,
