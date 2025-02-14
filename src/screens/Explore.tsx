@@ -5,18 +5,40 @@ import Header from '../components/Header';
 import StockCard from '../components/StockCard';
 import { ActivityIndicator } from 'react-native-paper';
 import { theme } from '../constants/theme';
+import { useCallback } from 'react';
+import { Stock } from '../types/stocks';
 
 const ExploreScreen = () => {
   const {
     searchQuery,
     setSearchQuery,
     stocks,
-    isSearching,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     isLoading,
   } = useInfiniteStockSearch();
+
+  const renderItem = useCallback(
+    ({ item }: { item: Stock }) => (
+      <StockCard
+        ticker={item?.ticker}
+        name={item?.name}
+        primaryExchange={item?.primary_exchange}
+      />
+    ),
+    [],
+  );
+  const onEndReached = useCallback(async () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      await fetchNextPage();
+    }
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const keyExtractor = useCallback(
+    (item: Stock) => item.ticker + '' + Math.random(),
+    [],
+  );
 
   return (
     <View style={styles.screenContainer}>
@@ -27,7 +49,7 @@ const ExploreScreen = () => {
       />
 
       <View style={styles.container}>
-        {isSearching ? (
+        {isLoading ? (
           <ActivityIndicator
             size={'large'}
             animating={true}
@@ -37,24 +59,13 @@ const ExploreScreen = () => {
           <FlatList
             data={stocks}
             numColumns={2}
-            keyExtractor={item => item.ticker + '' + Math.random()}
-            renderItem={({ item }) => (
-              <StockCard
-                ticker={item?.ticker}
-                name={item?.name}
-                primaryExchange={item?.primary_exchange}
-              />
-            )}
-            onEndReached={async () => {
-              if (hasNextPage && !isFetchingNextPage) {
-                await fetchNextPage();
-              }
-            }}
-            onEndReachedThreshold={0.5}
+            keyExtractor={keyExtractor}
+            renderItem={renderItem}
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.2}
             ListFooterComponent={
               <ListFooter
                 isFetchingNextPage={isFetchingNextPage}
-                isLoading={isLoading}
                 stocks={stocks}
                 hasNextPage={hasNextPage}
               />
