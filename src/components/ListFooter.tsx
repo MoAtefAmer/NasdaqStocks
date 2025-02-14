@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { FetchStocksResponse } from '../types/stocks';
+import { Stock } from '../types/stocks';
 import { theme } from '../constants/theme';
 import { ActivityIndicator } from 'react-native-paper';
 interface ListFooterProps {
   isFetchingNextPage: boolean;
   hasNextPage?: boolean;
-  stocks: FetchStocksResponse['stocks'];
+  stocks: Stock[];
 }
 
 const ListFooter = ({
@@ -25,7 +25,7 @@ const ListFooter = ({
     );
   }
   if (!hasNextPage && stocks?.length === 0) {
-    return <Text style={styles.endText}>No More Results</Text>;
+    return <Text style={styles.endText}>No Results Found</Text>;
   }
   return null;
 };

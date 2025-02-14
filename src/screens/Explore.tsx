@@ -82,7 +82,7 @@ const ExploreScreen = () => {
 export default ExploreScreen;
 
 const styles = StyleSheet.create({
-  screenContainer: { backgroundColor: 'white', flex: 1 },
+  screenContainer: { backgroundColor: theme.colors.onPrimary, flex: 1 },
   container: {
     flex: 1,
   },

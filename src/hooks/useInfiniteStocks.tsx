@@ -4,7 +4,7 @@ import { fetchStocks } from '../api/stocksApi';
 
 export const useInfiniteStocks = (query: string) => {
   return useInfiniteQuery<FetchStocksResponse, Error>({
-    queryKey: ['fetchStocks', query],
+    queryKey: ['stocks', query],
     queryFn: ({ pageParam = undefined }) =>
       fetchStocks({ query, pageCursor: pageParam as string | undefined }),
     initialPageParam: undefined,

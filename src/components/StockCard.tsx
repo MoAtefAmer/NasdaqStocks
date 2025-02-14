@@ -15,6 +15,7 @@ const itemWidth = screenWidth / 2 - 20;
 
 const StockCard = ({ ticker, name, primaryExchange }: StockCardProps) => {
   const cardStyle = useMemo(() => [styles.card, { width: itemWidth }], []);
+
   return (
     <Card style={cardStyle}>
       <Card.Title
