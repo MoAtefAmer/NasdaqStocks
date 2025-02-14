@@ -50,11 +50,13 @@ const ExploreScreen = () => {
 
       <View style={styles.container}>
         {isLoading ? (
-          <ActivityIndicator
-            size={'large'}
-            animating={true}
-            color={theme.colors.logoColor}
-          />
+          <View style={styles.activityIndicatorContainer}>
+            <ActivityIndicator
+              size={'large'}
+              animating={true}
+              color={theme.colors.logoColor}
+            />
+          </View>
         ) : (
           <FlatList
             data={stocks}
@@ -83,6 +85,9 @@ const styles = StyleSheet.create({
   screenContainer: { backgroundColor: 'white', flex: 1 },
   container: {
     flex: 1,
+  },
+  activityIndicatorContainer: {
+    marginTop: 20,
   },
 
   searchInput: {

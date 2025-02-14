@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { theme } from '../constants/theme';
 import { Card, Text } from 'react-native-paper';
+import { useMemo } from 'react';
 
 interface StockCardProps {
   ticker: string;
@@ -8,12 +9,14 @@ interface StockCardProps {
   primaryExchange: string;
 }
 
-const StockCard = (props: StockCardProps) => {
-  const { ticker, name, primaryExchange } = props;
-  const screenWidth = Dimensions.get('window').width;
-  const itemWidth = screenWidth / 2 - 20;
+const screenWidth = Dimensions.get('window').width;
+
+const itemWidth = screenWidth / 2 - 20;
+
+const StockCard = ({ ticker, name, primaryExchange }: StockCardProps) => {
+  const cardStyle = useMemo(() => [styles.card, { width: itemWidth }], []);
   return (
-    <Card style={[styles.card, { width: itemWidth }]}>
+    <Card style={cardStyle}>
       <Card.Title
         titleStyle={styles.titleStyle}
         subtitleStyle={styles.subtitleStyle}
@@ -22,7 +25,7 @@ const StockCard = (props: StockCardProps) => {
       />
       <Card.Content>
         <Text
-          style={{ color: 'white' }}
+          style={styles.subtextColor}
           variant="bodySmall"
           numberOfLines={3}
           ellipsizeMode="tail">
@@ -36,6 +39,8 @@ const StockCard = (props: StockCardProps) => {
 export default StockCard;
 
 const styles = StyleSheet.create({
+  subtextColor: { color: theme.colors.onPrimary },
+
   card: {
     padding: 10,
     backgroundColor: theme.colors.primary,
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
     height: 150,
   },
   titleStyle: {
-    color: 'white',
+    color: theme.colors.onPrimary,
     fontSize: 20,
     fontWeight: '500',
   },
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   text: {
-    color: 'white',
+    color: theme.colors.onPrimary,
     fontSize: 16,
   },
 });
