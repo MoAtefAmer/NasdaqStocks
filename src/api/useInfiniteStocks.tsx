@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { FetchStocksResponse } from '../types/stocks';
-import { fetchStocks } from '../api/stocksApi';
+import { fetchStocks } from './stocksApi';
 
 export const useInfiniteStocks = (query: string) => {
   return useInfiniteQuery<FetchStocksResponse, Error>({

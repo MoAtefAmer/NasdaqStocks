@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import useDebounce from './useDebounce';
-import { useInfiniteStocks } from './useInfiniteStocks';
+import { useInfiniteStocks } from '../api/useInfiniteStocks';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
