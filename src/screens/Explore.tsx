@@ -8,8 +8,8 @@ import { theme } from '../constants/theme';
 
 const ExploreScreen = () => {
   const {
-    query,
-    setQuery,
+    searchQuery,
+    setSearchQuery,
     stocks,
     isSearching,
     fetchNextPage,
@@ -19,11 +19,11 @@ const ExploreScreen = () => {
   } = useInfiniteStockSearch();
 
   return (
-    <>
+    <View style={styles.screenContainer}>
       <Header
         placeholder="Search for stocks"
-        searchQuery={query}
-        setSearchQuery={setQuery}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
 
       <View style={styles.container}>
@@ -62,16 +62,16 @@ const ExploreScreen = () => {
           />
         )}
       </View>
-    </>
+    </View>
   );
 };
 
 export default ExploreScreen;
 
 const styles = StyleSheet.create({
+  screenContainer: { backgroundColor: 'white', flex: 1 },
   container: {
     flex: 1,
-    marginTop: 200,
   },
 
   searchInput: {
