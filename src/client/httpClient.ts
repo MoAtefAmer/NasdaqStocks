@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const POLYGON_API_KEY = process.env.POLYGON_API_KEY;
-export const apiClient = axios.create({
+export const httpClient = axios.create({
   baseURL: 'https://api.polygon.io/v3/reference/',
   timeout: 10000,
-  headers: {'Content-Type': 'application/json'},
+  headers: { 'Content-Type': 'application/json' },
 });

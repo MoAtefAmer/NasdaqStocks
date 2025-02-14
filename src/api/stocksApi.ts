@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiClient, POLYGON_API_KEY } from '../client/apiClient';
+import { httpClient, POLYGON_API_KEY } from '../client/httpClient';
 import 'react-native-url-polyfill/auto';
 import { Stock, FetchStocksResponse } from '../types/stocks';
 export const fetchStocks = async ({
@@ -20,7 +20,7 @@ export const fetchStocks = async ({
   };
 
   try {
-    const { data } = await apiClient.get<{
+    const { data } = await httpClient.get<{
       results?: Stock[];
       next_url?: string;
     }>('tickers', { params });
