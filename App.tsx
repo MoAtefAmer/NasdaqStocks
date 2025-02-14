@@ -1,4 +1,4 @@
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import useBootSplash from './src/hooks/useBootSplash';
 import React from 'react';
 import {QueryClientProvider} from '@tanstack/react-query';
