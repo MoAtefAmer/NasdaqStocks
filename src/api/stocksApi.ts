@@ -1,8 +1,7 @@
 import axios from 'axios';
-import {apiClient, POLYGON_API_KEY} from '../client/apiClient';
+import { apiClient, POLYGON_API_KEY } from '../client/apiClient';
 import 'react-native-url-polyfill/auto';
-import {Stock, FetchStocksResponse} from '../types/stocks';
-
+import { Stock, FetchStocksResponse } from '../types/stocks';
 export const fetchStocks = async ({
   query,
   pageCursor,
@@ -12,7 +11,7 @@ export const fetchStocks = async ({
 }): Promise<FetchStocksResponse> => {
   const params = {
     search: query,
-    active: 'true',
+    active: true,
     limit: 20,
     apiKey: POLYGON_API_KEY,
     sort: 'ticker',
@@ -21,13 +20,14 @@ export const fetchStocks = async ({
   };
 
   try {
-    const {data} = await apiClient.get<{results?: Stock[]; next_url?: string}>(
-      'tickers',
-      {params},
-    );
-
+    const { data } = await apiClient.get<{
+      results?: Stock[];
+      next_url?: string;
+    }>('tickers', { params });
     const nextCursor =
-      new URL(data.next_url || '').searchParams.get('cursor') ?? undefined;
+      (data?.next_url
+        ? new URL(data?.next_url).searchParams.get('cursor')
+        : undefined) ?? undefined;
 
     const stocks: Stock[] = data?.results || [];
 
@@ -36,6 +36,7 @@ export const fetchStocks = async ({
       nextCursor,
     };
   } catch (error) {
+    console.error('Tickers Fetch Api error :>> ', error);
     if (!axios.isAxiosError(error)) {
       throw error;
     }
