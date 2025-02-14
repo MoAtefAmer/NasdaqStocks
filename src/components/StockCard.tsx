@@ -1,31 +1,28 @@
-import {Dimensions, StyleSheet} from 'react-native';
-import {theme} from '../constants/theme';
-import {Card, Text} from 'react-native-paper';
-import ActiveChip from './ActiveChip';
+import { Dimensions, StyleSheet } from 'react-native';
+import { theme } from '../constants/theme';
+import { Card, Text } from 'react-native-paper';
 
 interface StockCardProps {
   ticker: string;
   name: string;
-  active: boolean;
   primaryExchange: string;
 }
 
 const StockCard = (props: StockCardProps) => {
-  const {ticker, name, active, primaryExchange} = props;
+  const { ticker, name, primaryExchange } = props;
   const screenWidth = Dimensions.get('window').width;
   const itemWidth = screenWidth / 2 - 20;
   return (
-    <Card style={[styles.card, {width: itemWidth}]}>
+    <Card style={[styles.card, { width: itemWidth }]}>
       <Card.Title
         titleStyle={styles.titleStyle}
         subtitleStyle={styles.subtitleStyle}
         title={ticker}
         subtitle={primaryExchange}
-        right={() => active && <ActiveChip />}
       />
       <Card.Content>
         <Text
-          style={{color: 'white'}}
+          style={{ color: 'white' }}
           variant="bodySmall"
           numberOfLines={3}
           ellipsizeMode="tail">
