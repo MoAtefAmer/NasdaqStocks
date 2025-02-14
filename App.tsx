@@ -1,4 +1,3 @@
-import { SafeAreaView, StyleSheet } from 'react-native';
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './src/client/ReactQueryClient';
@@ -9,22 +8,9 @@ const App = (): React.JSX.Element => {
   useBootSplash();
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={styles.container}>
-        <ExploreScreen />
-      </SafeAreaView>
+      <ExploreScreen />
     </QueryClientProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: '500',
-  },
-});
 
 export default App;
