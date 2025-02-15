@@ -16,20 +16,19 @@ const Header: React.FC<HeaderProps> = ({
   setSearchQuery,
 }: HeaderProps) => {
   const insets = useSafeAreaInsets();
-
   const headerContainerStyle = useMemo(
     () => [styles.header, { paddingTop: insets.top }],
     [insets.top],
   );
-
   return (
-    <View style={headerContainerStyle}>
+    <View style={headerContainerStyle} testID="header-container">
       <StatusBar
         translucent
         backgroundColor="transparent"
         barStyle="light-content"
       />
       <Image
+        testID="header-logo"
         source={require('../assets/nasdaqlogo.png')}
         style={styles.logo}
         resizeMode="contain"

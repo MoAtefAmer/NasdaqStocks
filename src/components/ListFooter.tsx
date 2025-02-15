@@ -17,6 +17,7 @@ const ListFooter = ({
     return (
       <View style={styles.loaderContainer}>
         <ActivityIndicator
+          testID="loading-indicator"
           size={'large'}
           animating={true}
           color={theme.colors.logoColor}
