@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { httpClient, POLYGON_API_KEY } from '../client/httpClient';
-import 'react-native-url-polyfill/auto';
+
 import { Stock, FetchStocksResponse } from '../types';
 export const fetchStocks = async ({
   query,
