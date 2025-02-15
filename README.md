@@ -1,3 +1,12 @@
+# App Demo
+
+<table>
+  <tr>
+    <td><img src="src/assets//readme//android-demo-compressed.gif" width="200"></td>
+    <td><img src="src/assets//readme//ios-demo-compressed.gif" width="200"></td>
+  </tr>
+</table>
+
 # Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
