@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <td><img src="src/assets//readme//android-demo.gif" width="400"></td>
-    <td><img src="src/assets//readme//ios-demo.gif" width="400"></td>
+    <td><img src="src/assets//readme//android-demo.gif" width="200"></td>
+    <td><img src="src/assets//readme//ios-demo.gif" width="200"></td>
   </tr>
 </table>
 
