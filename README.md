@@ -1,3 +1,12 @@
+# App Demo
+
+<table>
+  <tr>
+    <td><img src="src/assets//readme//android-demo.gif" width="400"></td>
+    <td><img src="src/assets//readme//ios-demo.gif" width="400"></td>
+  </tr>
+</table>
+
 # Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
@@ -131,7 +140,6 @@ NasdaqStocks/
 ├── Gemfile  # Defines Ruby dependencies for React Native iOS builds, ensuring compatibility.
 │
 ├── Gemfile.lock  # Locks Ruby gem dependencies for consistent iOS build environments.
-
 
 
 ```
